@@ -1,4 +1,4 @@
-﻿//
+//
 // MessageBarViewController.cs
 //
 // Author:
@@ -24,7 +24,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace MessageBar
 {

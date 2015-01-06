@@ -27,9 +27,9 @@
 
 
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.Foundation;
+using UIKit;
+using CoreGraphics;
+using Foundation;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -130,7 +130,7 @@ namespace MessageBar
 			if (MessageBarQueue.Count > 0) {
 				MessageVisible = true;
 				MessageView messageView = MessageBarQueue.Dequeue ();
-				messageView.Frame = new RectangleF (0, -messageView.Height, messageView.Width, messageView.Height);
+				messageView.Frame = new CGRect (0, -messageView.Height, messageView.Width, messageView.Height);
 				messageView.Hidden = false;
 				messageView.SetNeedsDisplay ();
 
@@ -140,11 +140,11 @@ namespace MessageBar
 					return; 
 
 				UIView.Animate (DismissAnimationDuration, 
-					() => 
-						messageView.Frame = new RectangleF (messageView.Frame.X, 
+					() => (
+						messageView.Frame = new CGRect (messageView.Frame.X, 
 						MessageBarOffset + messageView.Frame.Y + messageView.Height, 
 						messageView.Width, messageView.Height)
-				);
+					));
 
 				//Need a better way of dissmissing the method
 				var dismiss = new Timer (DismissMessage, messageView, TimeSpan.FromSeconds (DisplayDelay),
@@ -196,7 +196,7 @@ namespace MessageBar
 				messageView.Hit = true;
 				UIView.Animate (DismissAnimationDuration, 
 					delegate {
-						messageView.Frame = new RectangleF (
+						messageView.Frame = new CGRect (
 							messageView.Frame.X, 
 							- (messageView.Frame.Height - MessageBarOffset), 
 							messageView.Frame.Width, messageView.Frame.Height);
